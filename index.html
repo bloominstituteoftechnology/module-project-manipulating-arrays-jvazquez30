@@ -30,8 +30,21 @@
     // ❗ Notes:
     // 🧠 There are many ways to solve this, but practice using a for loop to iterate over the array.
     // 🧠 As you have done in the past, declare a variable before you start looping, to accumulate the result.
+    
+    
     function sumNumsFor(nums) {
-
+      let sum = 0
+      for (let i = 0; i < nums.length; i++) {
+        if (nums === "") {
+          sum = 0
+        } else if (nums[i] === 13 ) {
+          return "I'm too superstitious!"
+        } else if (typeof nums[i] === "number") {
+          sum += nums[i]
+         }
+        }
+        return sum
+        
     }
 
     // 👉 CHALLENGE 2
@@ -41,7 +54,18 @@
     // ❗ Notes:
     // 🧠 There are many ways to solve this, but practice using a for loop to iterate over the characters of the string.
     function stripVowels(str) {
-
+      let strip = ""
+      for (let letter = 0; letter < str.length; letter++) {
+      if (str[letter] !== "a" && str[letter] !== "e" && str[letter] !== "i" && str[letter] !== "o" && str[letter] !== "u") {
+        strip += str[letter]
+        
+      }
+    }
+      return strip
+        //   strip = str.replace(/[aeiou]/g, '') 
+        
+      // }
+      // return strig
     }
 
     // 👉 CHALLENGE 3
@@ -49,8 +73,23 @@
     // 🧠 Examples of usage:
     // sumNumsWhile([1, 2, 3]) // should return 6
     // sumNumsWhile([1, 2, 13]) // should return "I'm too superstitious!"
-    function sumNumsWhile() {
+    function sumNumsWhile(letter) {
+      let sum = 0 
+      let i = 0
 
+      while(i < letter.length) {
+        if (letter === "") {
+          sum = 0
+        } else if (letter[i] === 13) {
+          return "I'm too superstitious!"
+        } else if (typeof letter[i] === "number") {
+          sum += letter[i]
+          
+        }
+        i++
+      
+      }
+      return sum
     }
 
     // 👉 CHALLENGE 4
@@ -70,8 +109,21 @@
     // 🧠 There are many ways to solve this, but practice using a while loop.
     // 🧠 Work out using pen and paper how the round number and the lifePoints change after each round.
     // 🧠 As long as there are lifePoints, decrease lifePoints by round number, and increase round number by one.
-    function fightMonsters() {
+    function fightMonsters(lifePoints) {
+      let damage = 0
+      let health = lifePoints
+      
 
+      while (health > 0) {
+        damage++
+        health -= damage
+        
+        
+        if (health <= 0) {
+          return `You died in round ${damage}`
+        }
+      }
+      return health
     }
 
     // 👉 CHALLENGE 5
@@ -81,8 +133,21 @@
     // findEvenNums([0, 1, 2, 3, 4]) // should return [0, 2, 4]
     // ❗ Notes:
     // 🧠 Use any kind of loop you'd like and the push method to populate the array of even numbers.
-    function findEvenNums() {
+    
+    function findEvenNums(evenNum) {
+      let newArray = []
+      let i = 0
 
+      while (i < evenNum.length) {
+        if (evenNum[i] % 2 === 0) {
+          newArray.push(evenNum[i])
+        }
+        i++ 
+        }
+        
+      return newArray
+      
+      
     }
 
     // 👉 CHALLENGE 6
@@ -92,7 +157,22 @@
     // 🧠 Ages in the subarrays should appear in the same order they appeared in the original array.
     // 🧠 Examples of usage:
     // separateAges([31, 12, 25, 65, 84, 20]) // should return [[12, 20], [31, 25, 65, 84]]
-    function separateAges() {
+    function separateAges(ages) {
+      let combinedArray = []
+      let young21 = []
+      let older21 = []
+      let num = 0
+      while (num < ages.length) { 
+        combinedArray = [young21, older21]
+        if (ages[num] < 21) {
+          young21.push(ages[num])
+        } else if (ages[num] >= 21) {
+          older21.push(ages[num])
+        }
+        num++
+      }
+      return combinedArray
+
 
     }
 
@@ -103,7 +183,27 @@
     // 🧠 The "tail" prop contains an array holding the elements of the array after the first one.
     // 🧠 Examples of usage:
     // headAndTail([1, 2, 3]) // should return { head: 1, tail: [2, 3] }
-    function headAndTail() {
+    function headAndTail(coin) {
+    
+    let head = coin[0]; // The head should be the first element of the array
+    let tail = coin.slice(1); // The tail should be an array of the remaining elements
+    let obj = { "head": head, "tail": tail };
+
+    return obj;
+      
+      // let head = []
+      // let tails = []
+      // let obj = {"head": head, "tails": tails}
+      
+      // for (let i = 0; i < coin.length; i++) {
+      //   if (i === 0) {
+      //     head.push(coin[i])
+      //   } else if (i > 0) {
+      //     tails.push(coin[i])
+      //   }
+      // }
+      // return obj
+
 
     }
 
@@ -114,7 +214,27 @@
     // nestedLoops(['hello', 'goodbye']) // should return ['hEllO', 'gOOdbyE']
     // ❗ Notes:
     // 🧠 To capitalize a string you can use its toUpperCase method: "a".toUpperCase() returns "A"
-    function nestedLoops() {
+    function nestedLoops(strings) {
+      let newArray = []
+      let letterUpper = ["a", "e", "i", "o", "u"]
+      
+      for (let i = 0; i < strings.length; i++) {
+        let newWord = strings[i]
+        let newString = ""
+        //console.log(strings[i])
+        for (let j = 0; j < newWord.length; j++) {
+          //console.log(newWord[j])
+          let char = newWord[j]
+          if (letterUpper.includes(char)) {
+           newString += char.toUpperCase()
+          } else {
+            newString += char
+          }
+      }
+      newArray.push(newString)
+    }
+    return newArray
+      
 
     }
 
@@ -129,7 +249,21 @@
     // 🧠 Practice using pop and slice.
     // 🧠 Note that pop modifies the original array in place and returns the "popped" element, whereas slice gives us a brand new array.
     function crazyTrimmer(arr) {
+      let minusArray = []
+      let i = 0
 
+      while (i < arr.length) {
+        if (arr.length % 2 === 0) {
+          arr.pop()
+          return arr
+        } else {
+          arr.pop()
+          arr.shift()
+          return arr
+        }
+        i++
+      }
+      
     }
 
     // 🧪 TESTS, do not work below this line
